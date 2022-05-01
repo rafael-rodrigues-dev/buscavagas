@@ -20,12 +20,15 @@ class Application:
 
     def config(self):
         self.app.title('Busca Vagas')
-        self.app.attributes('-zoomed', True)
+        self.app.state('zoomed')
         self.app.configure(background='#1d004d')
 
     def frames(self):
         self.frame1 = Frame(self.app, bg='#1d004d')
         self.frame1.place(relx=0.01, rely=0, relheight=0.2, relwidth=0.98)
+        self.logo = PhotoImage(file='logo.png')
+        self.logo_label = Label(self.app, image=self.logo, bg='#1d004d', anchor=W)
+        self.logo_label.place(relx=0.3, rely=-0.05)
         self.frame2 = Frame(self.app, bg='#1d004d')
         self.frame2.place(relx=0.01, rely=0.21, relheight=0.2, relwidth=0.98)
         self.frame3 = Frame(self.app, bg='red')
@@ -67,18 +70,16 @@ class Application:
 
     def inputs_and_texts(self):
 
-        Label(self.frame2, text='Digite a vaga desejada:', bg='#1d004d', fg='white', font='Kollektif', anchor=W).place(relx=0.1,
-                                                                                                               rely=0.3)
-        Label(self.frame2, text='Digite a cidade:', bg='#1d004d', fg='white', font='Kollektif', anchor=W).place(relx=0.5,
-                                                                                                        rely=0.3)
+        Label(self.frame2, text='Digite a vaga desejada:', bg='#1d004d', fg='white', font='Kollektif', anchor=W).place(relx=0.01, rely=0.3)
+        Label(self.frame2, text='Digite a cidade:', bg='#1d004d', fg='white', font='Kollektif', anchor=W).place(relx=0.45, rely=0.3)
         self.input_job = Entry(self.frame2, font='Kollektif')
-        self.input_job.place(relx=0.22, rely=0.3, width=400, height=25)
+        self.input_job.place(relx=0.16, rely=0.3, width=400, height=25)
         self.input_city = Entry(self.frame2, font='Kollektif')
-        self.input_city.place(relx=0.6, rely=0.3, width=400, height=25)
+        self.input_city.place(relx=0.55, rely=0.3, width=400, height=25)
 
         # Progress Bar
         self.progress_bar = ttk.Progressbar(self.frame2, length=1000)
-        self.progress_bar.place(relx=0.2, rely=0.6)
+        self.progress_bar.place(relx=0.1, rely=0.7)
 
     def treeview(self):
         self.tabela = ttk.Treeview(self.frame3, height=3, columns=('col1', 'col2', 'col3', 'col4'))
@@ -98,18 +99,17 @@ class Application:
 
     def buttons_and_options(self):
         # Button
-        self.btn = Button(self.frame2, text='BUSCAR AGORA!', bg='#2fb4ae', fg='white', font='Kollektif',
+        self.btn = Button(self.frame2, text='PESQUISAR', bg='#2fb4ae', fg='white', font='Kollektif',
                           command=self.vagascom)
-        self.btn.place(relx=0.9, rely=0.3)
+        self.btn.place(relx=0.85, rely=0.2)
 
-        self.btn_excel = Button(self.frame2, text='SALVAR EXCEL', bg='green', fg='white', font='Kollektif',
-                          command=self.vagascom)
-        self.btn_excel.place(relx=0.9, rely=0.5)
-
-        self.btn_pdf = Button(self.frame2, text='SALVAR PDF', bg='red', fg='white', font='Kollektif',
+        self.btn_excel = Button(self.frame2, text='EXCEL', bg='green', fg='white', font='Kollektif', width=11,
                                 command=self.vagascom)
-        self.btn_pdf.place(relx=0.9, rely=0.7)
+        self.btn_excel.place(relx=0.85, rely=0.5)
 
+        self.btn_pdf = Button(self.frame2, text='PDF', bg='red', fg='white', font='Kollektif', width=11,
+                                command=self.vagascom)
+        self.btn_pdf.place(relx=0.85, rely=0.8)
 
 
 Application()
