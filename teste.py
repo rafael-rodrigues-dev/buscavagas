@@ -1,10 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-from time import sleep
 from tkinter import *
 from tkinter import ttk
-import pandas as pd
-from datetime import date
 
 app = Tk()
 
@@ -97,19 +94,19 @@ class Application:
 
         self.tabela.place(relx=0, rely=0, relwidth=1, relheight=1)
 
+    def remove_all(self):
+        for record in self.tabela.get_children():
+            self.tabela.delete(record)
+
     def buttons_and_options(self):
         # Button
         self.btn = Button(self.frame2, text='PESQUISAR', bg='#2fb4ae', fg='white', font='Kollektif',
                           command=self.vagascom)
         self.btn.place(relx=0.85, rely=0.2)
 
-        self.btn_excel = Button(self.frame2, text='EXCEL', bg='green', fg='white', font='Kollektif', width=11,
-                                command=self.vagascom)
-        self.btn_excel.place(relx=0.85, rely=0.5)
-
-        self.btn_pdf = Button(self.frame2, text='PDF', bg='red', fg='white', font='Kollektif', width=11,
-                                command=self.vagascom)
-        self.btn_pdf.place(relx=0.85, rely=0.8)
+        self.btn_limpar = Button(self.frame2, text='LIMPAR', bg='#2fb4ae', fg='white', font='Kollektif', width=11,
+                                 command=self.remove_all)
+        self.btn_limpar.place(relx=0.85, rely=0.5)
 
 
 Application()
